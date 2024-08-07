@@ -1,8 +1,15 @@
 
 <ul>
-    <li class="Task" *ngFor="let task of tasks" [ngClass]="{ 'blue': task.isDone , 'red': !task.isDone } ">
+    <h4 class="Task" *ngFor="let task of tasks" [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
      {{task.details}}
-     <button (click)="ToggleTask(task.id)">Toggle</button>
-    </li>
+     <button class="TaskButton" (click)="ToggleTask(task.id)">Toggle</button>
+     <button class="TaskButton" (click)="DeleteTask(task.id)">Delete</button>
+    </h4>
     
 </ul>
+<div class="InputDiv">
+   <label>Add New Task</label>
+    <input #TaskInput placholder="Add Your Task">
+    <button type="submit" class="AddButton" (click)="AddTask(TaskInput.value)">Add</button>
+
+</div>

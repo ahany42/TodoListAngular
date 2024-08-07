@@ -11,7 +11,7 @@ import { TasklistComponent } from './Components/tasklist/tasklist.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    TasklistComponent
+    TasklistComponent,
   ],
   imports: [
     BrowserModule,

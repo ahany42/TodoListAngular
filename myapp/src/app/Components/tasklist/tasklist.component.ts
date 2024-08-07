@@ -19,4 +19,15 @@ IdGenrator():number{
 
 return ++this.taskId;
 }
+AddTask(taskDetails:string){
+  if(taskDetails===""){
+    alert("Fill Task Feild");
+  }
+  else{
+  this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator());
+  }
+}
+DeleteTask(id:number){
+  this.tasks = this.tasks.filter(task => task.id != id);
+}
 }
