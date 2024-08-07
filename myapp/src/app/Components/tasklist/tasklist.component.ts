@@ -31,4 +31,16 @@ AddTask(taskDetails:string){
 DeleteTask(id:number){
   this.tasks = this.tasks.filter(task => task.id != id);
 }
+GetTaskCount():number{
+  return this.tasks.length;
+}
+GetDoneTaskCount():number{
+  let doneCount=0;
+for(let task of this.tasks){
+  if(task.isDone){
+    doneCount++;
+  }
+}
+return doneCount;
+}
 }

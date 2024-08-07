@@ -1,15 +1,17 @@
+<h5>Task Count: {{GetTaskCount()}} &nbsp; Completed: {{GetDoneTaskCount()}} &nbsp; To Do:{{GetTaskCount()-GetDoneTaskCount()}}</h5>
 
 <ul>
-    <h4 class="Task" *ngFor="let task of tasks" [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
+    <p class="Task" *ngFor="let task of tasks" [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
      {{task.details}}
-     <button class="TaskButton" (click)="ToggleTask(task.id)">Toggle</button>
-     <button class="TaskButton" (click)="DeleteTask(task.id)">Delete</button>
-    </h4>
+     <i class='fa-solid fa-square-check TaskButton' (click)="ToggleTask(task.id)"></i>
+ 
+     <i class='fa-solid fa-trash-can TaskButton' id='bin' (click)="DeleteTask(task.id)"></i>
+    </p>
     
 </ul>
 <div class="InputDiv">
    <label>Add New Task</label>
-    <input #TaskInput placholder="Add Your Task">
+    <input #TaskInput placholder="Add Your Task" maxlength="70">
     <button type="submit" class="AddButton" (click)="AddTask(TaskInput.value)">Add</button>
 
 </div>

@@ -1,9 +1,12 @@
 .DoneTask{
-    background-color:#4BB543;
+    background-color:#274546;
+    text-decoration: line-through;
+    color:white;
 }
 .TodoTask{
-    background-color: grey;
-    color:white;
+    background-color:#D3D3D3;
+    color:black;
+
 }
 .Task{
     border:solid 1px black;
@@ -13,7 +16,7 @@
     padding-left:10px;
 }
 .TaskButton{
-    font-size:0.5em;
+    font-size:0.8em;
     border-color: white;
     border-radius: 5px;
     margin-right: 5px;
@@ -29,4 +32,9 @@
 .AddButton{
     margin-top: 30px;
 }
-
+h5{
+    text-align:center;
+}
+#bin{
+    color:brown;
+}
