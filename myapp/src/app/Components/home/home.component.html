@@ -1,9 +1,3 @@
 <div class="Home">
-    <h1>{{storeInfo.name}}</h1>
-    <img *ngIf="isImgShown"src="{{storeInfo.imgURL}}" alt="Store Info">
-    <h4>Our Branches:</h4>
-    <button  class="btn btn-primary btn-m" (click)="toggleImg()">Show/Hide Img</button>
-    <ul>
-        <li *ngFor="let item of storeInfo.branches">{{item}}</li>
-    </ul>
+<app-tasklist></app-tasklist>
 </div>

@@ -1,0 +1,8 @@
+
+<ul>
+    <li class="Task" *ngFor="let task of tasks" [ngClass]="{ 'blue': task.isDone , 'red': !task.isDone } ">
+     {{task.details}}
+     <button (click)="ToggleTask(task.id)">Toggle</button>
+    </li>
+    
+</ul>
