@@ -6,14 +6,15 @@ import {Task} from 'src/app/ViewModels/task';
   styleUrls: ['./tasklist.component.css']
 })
 export class TasklistComponent {
-  taskId=-1;
   tasks: Task[] = [
-    new Task('Task 1', false,this.IdGenrator()),
-    new Task('Task 2', false,this.IdGenrator()),
-    new Task('Task 3', false,this.IdGenrator())
+    
   ];
+  taskId=this.tasks.length-1;
   ToggleTask(id:number){
-    this.tasks[id].isDone=!this.tasks[id].isDone;
+    for(let task of this.tasks){
+      if(task.id===id)
+        task.isDone=!task.isDone;
+    }
 }
 IdGenrator():number{
 
