@@ -1,0 +1,12 @@
+.PageContainer{
+    display:flex;
+    justify-content:space-between ;
+    
+}
+.HomeComponent{
+    width:80%;
+}
+.SideBarComponent{
+    width:20%;
+    
+}
