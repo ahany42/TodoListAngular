@@ -16,7 +16,7 @@
     border:solid 1px black;
     margin:15px auto;
     height:30px;
-    width:85%;
+    width:50%;
     padding:0 10px;
     display:flex;
     flex-direction: row;
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    width:85%;
+    width:50%;
     
 }
 .AddButton{
@@ -44,6 +44,22 @@ input{
 }
 h5{
     text-align:center;
+}
+@media(max-width:1050px){
+    .InputDiv,.Task{
+        width:90%;
+    }
+    .Task{
+        height:55px;
+        align-items: center;
+    }
+    h5,label,p{
+   
+        font-weight: 400;
+    }
+    .TaskIcons{
+        margin-left: 5px;
+    }
 }
 #bin{
     color:brown;

@@ -20,13 +20,16 @@ IdGenrator():number{
 
 return ++this.taskId;
 }
-AddTask(taskDetails:string){
+AddTask(inputElement:HTMLInputElement){
+  const taskDetails = inputElement.value.trim();
   if(taskDetails===""){
-    alert("Fill Task Feild");
+    alert("Fill Task Field");
   }
   else{
   this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator());
-  }
+  inputElement.value=' ';
+}
+
 }
 DeleteTask(id:number){
   this.tasks = this.tasks.filter(task => task.id != id);
