@@ -1,3 +1,7 @@
+*{
+    margin:0;
+    padding: 0;
+}
 .DoneTask{
     background-color:#274546;
     text-decoration: line-through;
@@ -10,10 +14,13 @@
 }
 .Task{
     border:solid 1px black;
-    margin: 10px auto;
+    margin:15px auto;
     height:30px;
-    width:100%;
-    padding-left:10px;
+    width:85%;
+    padding:0 10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .TaskButton{
     font-size:0.8em;
@@ -26,11 +33,14 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-left: 30px;
+    width:85%;
     
 }
 .AddButton{
     margin-top: 30px;
+}
+input{
+    padding-left: 10px;
 }
 h5{
     text-align:center;
