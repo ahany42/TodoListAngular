@@ -29,7 +29,7 @@ SearchResults(inputElement:HTMLInputElement){
     inputElement.value="";
   }
   else{
-    this.searchResults=this.tasks.filter(task=>task.details.includes(inputElement.value));
+    this.searchResults=this.tasks.filter(task=>task.details.toLowerCase().includes(inputElement.value.toLocaleLowerCase()));
   }
 }
 
