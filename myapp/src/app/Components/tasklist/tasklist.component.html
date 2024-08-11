@@ -1,7 +1,10 @@
 <h5>Task Count: {{GetTaskCount()}} &nbsp; Completed: {{GetDoneTaskCount()}} &nbsp; To Do:{{GetTaskCount()-GetDoneTaskCount()}}</h5>
-
+<div class="SearchBarContainer">
+    <input #SearchInput placeholder="Search By Task Details" (change)="SearchResults(SearchInput)" class="SearchBar" />
+   
+</div>
 <ul>
-    <div class="Task" *ngFor="let task of tasks" [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
+    <div class="Task" *ngFor="let task of searchResults"  [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
     <p>
      {{task.details}}
     </p>

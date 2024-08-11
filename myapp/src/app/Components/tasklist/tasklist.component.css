@@ -39,6 +39,10 @@
 .AddButton{
     margin-top: 30px;
 }
+.SearchBarContainer{
+    display: flex;
+    justify-content: center;
+}
 input{
     padding-left: 10px;
 }

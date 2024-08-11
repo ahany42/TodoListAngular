@@ -9,6 +9,7 @@ export class TasklistComponent {
   tasks: Task[] = [
     
   ];
+  searchResults:Task[]=this.tasks;
   taskId=this.tasks.length-1;
   ToggleTask(id:number){
     for(let task of this.tasks){
@@ -20,6 +21,17 @@ IdGenrator():number{
 
 return ++this.taskId;
 }
+SearchResults(inputElement:HTMLInputElement){
+  if(inputElement.value.length===0 )
+    this.searchResults=this.tasks;
+  else if(inputElement.value===" "){
+    inputElement.value="";
+  }
+  else{
+    this.searchResults=this.tasks.filter(task=>task.details.includes(inputElement.value));
+  }
+}
+
 AddTask(inputElement:HTMLInputElement){
   const taskDetails = inputElement.value.trim();
   if(taskDetails===""){
@@ -33,6 +45,7 @@ AddTask(inputElement:HTMLInputElement){
 }
 DeleteTask(id:number){
   this.tasks = this.tasks.filter(task => task.id != id);
+ 
 }
 GetTaskCount():number{
   return this.tasks.length;
