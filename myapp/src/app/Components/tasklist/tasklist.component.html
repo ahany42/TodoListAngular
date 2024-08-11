@@ -4,6 +4,10 @@
    
 </div>
 <ul>
+    <div *ngIf="GetTaskCount()===0 || searchResults.length===0">
+        <app-task-placeholder></app-task-placeholder>
+    </div>
+    
     <div class="Task" *ngFor="let task of searchResults"  [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
     <p>
      {{task.details}}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Task} from 'src/app/ViewModels/task';
+import { TaskPlaceholderComponent } from '../task-placeholder/task-placeholder.component';
 @Component({
   selector: 'app-tasklist',
   templateUrl: './tasklist.component.html',

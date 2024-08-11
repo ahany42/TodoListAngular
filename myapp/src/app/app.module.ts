@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
 import { TasklistComponent } from './Components/tasklist/tasklist.component';
+import { TaskPlaceholderComponent } from './Components/task-placeholder/task-placeholder.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { TasklistComponent } from './Components/tasklist/tasklist.component';
     HeaderComponent,
     HomeComponent,
     TasklistComponent,
+    TaskPlaceholderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+.PlaceholderImg{
+    width:30%;
+}
+.PlaceholderContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
