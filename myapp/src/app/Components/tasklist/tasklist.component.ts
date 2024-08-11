@@ -33,20 +33,21 @@ SearchResults(inputElement:HTMLInputElement){
   }
 }
 
-AddTask(inputElement:HTMLInputElement){
+AddTask(inputElement:HTMLInputElement,SearchInput:HTMLInputElement){
   const taskDetails = inputElement.value.trim();
   if(taskDetails===""){
     alert("Fill Task Field");
   }
   else{
   this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator());
+  this.SearchResults(SearchInput);
   inputElement.value=' ';
 }
 
 }
-DeleteTask(id:number){
-  this.searchResults = this.searchResults.filter(task => task.id != id);
- 
+DeleteTask(id:number,SearchInput:HTMLInputElement){
+  this.tasks = this.tasks.filter(task => task.id != id);
+  this.SearchResults(SearchInput);
 }
 GetTaskCount():number{
   return this.tasks.length;

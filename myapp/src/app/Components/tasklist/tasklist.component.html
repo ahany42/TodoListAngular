@@ -1,6 +1,6 @@
 <h5>Task Count: {{GetTaskCount()}} &nbsp; Completed: {{GetDoneTaskCount()}} &nbsp; To Do:{{GetTaskCount()-GetDoneTaskCount()}}</h5>
 <div class="SearchBarContainer">
-    <input #SearchInput placeholder="Search By Task Details" (change)="SearchResults(SearchInput)" class="SearchBar" />
+    <input #SearchInput id="SearchInput" placeholder="Search By Task Details" (change)="SearchResults(SearchInput)" class="SearchBar" />
    
 </div>
 <ul>
@@ -15,7 +15,7 @@
     <div class="TaskIcons">
      <i class='fa-solid fa-square-check TaskButton' (click)="ToggleTask(task.id)"></i>
  
-     <i class='fa-solid fa-trash-can TaskButton' id='bin' (click)="DeleteTask(task.id)"></i>
+     <i class='fa-solid fa-trash-can TaskButton' id='bin' (click)="DeleteTask(task.id,SearchInput)"></i>
     </div>
 </div>
 </ul>
@@ -23,6 +23,6 @@
 <div class="InputDiv">
    <label>Add New Task</label>
     <input #TaskInput placeholder="Add Your Task Here ...." maxlength="100">
-    <button type="submit" class="AddButton" (click)="AddTask(TaskInput)">Add</button>
+    <button type="submit" class="AddButton" (click)="AddTask(TaskInput,SearchInput)">Add</button>
 
 </div>
