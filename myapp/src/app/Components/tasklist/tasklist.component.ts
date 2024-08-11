@@ -22,6 +22,11 @@ IdGenrator():number{
 
 return ++this.taskId;
 }
+DeleteAllTasks(searchInput:HTMLInputElement){
+  this.tasks=[];
+  this.searchResults=[];
+  searchInput.value="";
+}
 SearchResults(inputElement:HTMLInputElement){
   if(inputElement.value.length===0 )
     this.searchResults=this.tasks;

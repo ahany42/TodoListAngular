@@ -39,14 +39,24 @@
 .AddButton{
     margin-top: 30px;
 }
+#SearchInput{
+    border-radius:10px;
+}
 .SearchBarContainer{
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+}
+.DeleteAllTasksButton{
+    background-color: white;
+    border: none;
+    text-decoration: underline;
+    color:brown;
 }
 input{
     padding-left: 10px;
 }
-h5{
+p{
     text-align:center;
 }
 @media(max-width:1050px){

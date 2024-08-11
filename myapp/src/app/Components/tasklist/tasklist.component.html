@@ -1,7 +1,9 @@
-<h5>Task Count: {{GetTaskCount()}} &nbsp; Completed: {{GetDoneTaskCount()}} &nbsp; To Do:{{GetTaskCount()-GetDoneTaskCount()}}</h5>
+<p>Task Count: {{GetTaskCount()}} &nbsp; Completed: {{GetDoneTaskCount()}} &nbsp; To Do:{{GetTaskCount()-GetDoneTaskCount()}}</p>
 <div class="SearchBarContainer">
     <input #SearchInput id="SearchInput" placeholder="Search By Task Details" (change)="SearchResults(SearchInput)" class="SearchBar" />
-   
+</div>
+<div class="SearchBarContainer">
+ <button class="DeleteAllTasksButton" (click)="DeleteAllTasks(SearchInput)">Delete All Tasks</button>
 </div>
 <ul>
     <div *ngIf="GetTaskCount()===0 || searchResults.length===0">
