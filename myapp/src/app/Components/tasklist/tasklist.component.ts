@@ -45,7 +45,7 @@ AddTask(inputElement:HTMLInputElement){
 
 }
 DeleteTask(id:number){
-  this.tasks = this.tasks.filter(task => task.id != id);
+  this.searchResults = this.searchResults.filter(task => task.id != id);
  
 }
 GetTaskCount():number{
