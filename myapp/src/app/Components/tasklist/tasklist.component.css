@@ -54,6 +54,8 @@
     border: none;
     text-decoration: underline;
     color:brown;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 input{
     padding-left: 10px;
