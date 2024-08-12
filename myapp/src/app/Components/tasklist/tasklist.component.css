@@ -57,6 +57,9 @@
     font-size: 1.2em;
     font-weight: 600;
 }
+.AddTaskInput{
+    margin-top: 5px;
+}
 input{
     padding-left: 10px;
 }

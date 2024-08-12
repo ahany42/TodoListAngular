@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Task} from 'src/app/ViewModels/task';
-import { TaskPlaceholderComponent } from '../task-placeholder/task-placeholder.component';
 @Component({
   selector: 'app-tasklist',
   templateUrl: './tasklist.component.html',
@@ -10,13 +9,16 @@ export class TasklistComponent {
   tasks: Task[] = [
     
   ];
+  taskObject: { [category: string]: Task[] } = {};
   searchResults:Task[]=this.tasks;
   taskId=this.tasks.length-1;
   ToggleTask(id:number){
     for(let task of this.tasks){
-      if(task.id===id)
+      if(task.id===id){
         task.isDone=!task.isDone;
+      }
     }
+    
   const filterElement = document.getElementById('Filter') as HTMLSelectElement;
   filterElement.value = this.FilterResult;
   filterElement.dispatchEvent(new Event('change'));
@@ -31,6 +33,7 @@ DeleteAllTasks(searchInput:HTMLInputElement){
     this.tasks=[];
     this.searchResults=[];
     searchInput.value="";
+    this.taskObject={};
   }
 }
 FilterResult:string="All";
@@ -65,30 +68,44 @@ SearchResults(inputElement?:HTMLInputElement,event?:Event){
   
 }
 
-AddTask(inputElement:HTMLInputElement,SearchInput:HTMLInputElement){
-  const taskDetails = inputElement.value.trim();
+
+AddTask(taskInputElement:HTMLInputElement,categoryInputElement:HTMLInputElement,SearchInput:HTMLInputElement){
+  const taskDetails = taskInputElement.value.trim();
+  const taskCategory = categoryInputElement.value.trim();
   if(taskDetails===""){
-    alert("Fill Task Field");
+    alert("Please Fill Task Title Field");
   }
   else{
-  this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator());
-  this.SearchResults(SearchInput);
-  inputElement.value=' ';
-  const filterElement = document.getElementById('Filter') as HTMLSelectElement;
-  filterElement.value = this.FilterResult;
-  filterElement.dispatchEvent(new Event('change'));
-
-
+    if (!this.taskObject[taskCategory]) {
+      this.taskObject[taskCategory] = [];
+    }
+    this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator(),taskCategory);
+    this.SearchResults(SearchInput);
+    taskInputElement.value='';
+    categoryInputElement.value='';
+    const filterElement = document.getElementById('Filter') as HTMLSelectElement;
+    filterElement.value = this.FilterResult;
+    filterElement.dispatchEvent(new Event('change'));
+    this.taskObject[taskCategory].push(this.tasks[this.tasks.length-1]);
+    console.log(this.taskObject);
 }
 
 }
 DeleteTask(id:number,SearchInput:HTMLInputElement){
+  const deletedTask=this.tasks.find(task=>task.id==id);
   this.tasks = this.tasks.filter(task => task.id != id);
   this.SearchResults(SearchInput);
   const filterElement = document.getElementById('Filter') as HTMLSelectElement;
   filterElement.value = this.FilterResult;
   filterElement.dispatchEvent(new Event('change'));
-}
+  if(deletedTask){
+    this.taskObject[deletedTask.category]=this.taskObject[deletedTask.category].filter(task=>task.id!==deletedTask.id);
+    if (this.taskObject[deletedTask.category].length === 0) {
+      delete this.taskObject[deletedTask.category];
+    }
+  }
+
+  }
 GetTaskCount():number{
   return this.tasks.length;
 }

@@ -18,7 +18,6 @@
     <div *ngIf="GetTaskCount()===0 || searchResults.length===0">
         <app-task-placeholder></app-task-placeholder>
     </div>
-    
     <div class="Task" *ngFor="let task of searchResults"  [ngClass]="{ 'DoneTask': task.isDone , 'TodoTask': !task.isDone } ">
     <p>
      {{task.details}}
@@ -32,8 +31,11 @@
 </ul>
 
 <div class="InputDiv">
-   <label>Add New Task</label>
-    <input #TaskInput placeholder="Add Your Task Here ...." maxlength="100">
-    <button type="submit" class="AddButton" (click)="AddTask(TaskInput,SearchInput)">Add</button>
+   <p>Add New Task</p>
+    <label>Task Title<span> *</span></label>
+    <input #TaskInput class="AddTaskInput" placeholder="Add Your Task Here ...." maxlength="100">
+    <label>Task Category</label>
+    <input #TaskCategory class="AddTaskInput" placeholder="Add Your Task Category Here ...." maxlength="20">
+    <button type="submit" class="AddButton" (click)="AddTask(TaskInput,TaskCategory,SearchInput)">Add</button>
 
 </div>
