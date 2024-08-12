@@ -105,6 +105,14 @@ hr{
 .NotVisibleSearchBar{
     display: none;
 }
+@media(max-width:400px){
+    *{
+        font-size: 0.95em;
+    }
+    .SearchBarContainer{
+        width:100%;
+    }
+}
 /* Toggle Switch  */
 /* From Uiverse.io by lenin55 */ 
 .cl-toggle-switch {
