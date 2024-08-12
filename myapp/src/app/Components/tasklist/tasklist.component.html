@@ -1,6 +1,15 @@
 <p>Task Count: {{GetTaskCount()}} &nbsp; Completed: {{GetDoneTaskCount()}} &nbsp; To Do:{{GetTaskCount()-GetDoneTaskCount()}}</p>
 <div class="SearchBarContainer">
     <input #SearchInput id="SearchInput" placeholder="Search By Task Details" (change)="SearchResults(SearchInput)" class="SearchBar" />
+   <div>
+
+   <label for="Filter">Filter By</label>
+   <select id="Filter" name="Filter" (change)="SearchResults(undefined ,$event)">
+     <option value="All">All</option>
+     <option value="To-Do">To-Do</option>
+     <option value="Completed">Completed</option>
+    </select>
+   </div>
 </div>
 <div class="SearchBarContainer">
  <button class="DeleteAllTasksButton" (click)="DeleteAllTasks(SearchInput)">Delete All Tasks</button>

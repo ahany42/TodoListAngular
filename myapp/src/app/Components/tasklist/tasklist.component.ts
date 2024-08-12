@@ -17,25 +17,52 @@ export class TasklistComponent {
       if(task.id===id)
         task.isDone=!task.isDone;
     }
+  const filterElement = document.getElementById('Filter') as HTMLSelectElement;
+  filterElement.value = this.FilterResult;
+  filterElement.dispatchEvent(new Event('change'));
 }
 IdGenrator():number{
 
-return ++this.taskId;
+return Date.now();
 }
 DeleteAllTasks(searchInput:HTMLInputElement){
-  this.tasks=[];
-  this.searchResults=[];
-  searchInput.value="";
+  const confirmation=confirm("Are You Sure You Want To Delete All Tasks?");
+  if(confirmation){
+    this.tasks=[];
+    this.searchResults=[];
+    searchInput.value="";
+  }
 }
-SearchResults(inputElement:HTMLInputElement){
-  if(inputElement.value.length===0 )
-    this.searchResults=this.tasks;
-  else if(inputElement.value===" "){
-    inputElement.value="";
+FilterResult:string="All";
+SearchResults(inputElement?:HTMLInputElement,event?:Event){
+  if(inputElement){
+    if(inputElement.value.length===0 )
+      this.searchResults=this.tasks;
+    else if(inputElement.value===" "){
+      inputElement.value="";
+    }
+    else{
+      this.searchResults=this.tasks.filter(task=>task.details.toLowerCase().includes(inputElement.value.toLocaleLowerCase()));
+    }
   }
   else{
-    this.searchResults=this.tasks.filter(task=>task.details.toLowerCase().includes(inputElement.value.toLocaleLowerCase()));
+    this.searchResults=this.tasks;
   }
+  if(event){
+
+    const selectedElement = event.target as HTMLSelectElement;
+    this.FilterResult=selectedElement.value;
+  }
+    if(this.FilterResult==="Completed"){
+      this.searchResults=this.searchResults.filter(el=>(el.isDone));
+    }
+    else if(this.FilterResult==="To-Do"){
+      this.searchResults=this.searchResults.filter(el=>(!el.isDone));
+    }
+    else{
+      this.searchResults=this.searchResults;
+    }
+  
 }
 
 AddTask(inputElement:HTMLInputElement,SearchInput:HTMLInputElement){
@@ -47,12 +74,20 @@ AddTask(inputElement:HTMLInputElement,SearchInput:HTMLInputElement){
   this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator());
   this.SearchResults(SearchInput);
   inputElement.value=' ';
+  const filterElement = document.getElementById('Filter') as HTMLSelectElement;
+  filterElement.value = this.FilterResult;
+  filterElement.dispatchEvent(new Event('change'));
+
+
 }
 
 }
 DeleteTask(id:number,SearchInput:HTMLInputElement){
   this.tasks = this.tasks.filter(task => task.id != id);
   this.SearchResults(SearchInput);
+  const filterElement = document.getElementById('Filter') as HTMLSelectElement;
+  filterElement.value = this.FilterResult;
+  filterElement.dispatchEvent(new Event('change'));
 }
 GetTaskCount():number{
   return this.tasks.length;
@@ -66,4 +101,5 @@ for(let task of this.tasks){
 }
 return doneCount;
 }
+
 }

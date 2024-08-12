@@ -44,7 +44,9 @@
 }
 .SearchBarContainer{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    width:60%;
+    margin: auto;
     margin-top: 10px;
 }
 .DeleteAllTasksButton{
@@ -58,6 +60,14 @@ input{
 }
 p{
     text-align:center;
+}
+label{
+    margin-right: 10px;
+}
+select:focus {
+    border-color: #274546;
+    outline: none;
+    box-shadow: 0 0 5px #274546;
 }
 @media(max-width:1050px){
     .InputDiv,.Task{
