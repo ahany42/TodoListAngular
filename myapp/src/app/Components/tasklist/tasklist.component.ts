@@ -6,10 +6,8 @@ import {Task} from 'src/app/ViewModels/task';
   styleUrls: ['./tasklist.component.css']
 })
 export class TasklistComponent {
-  tasks: Task[] = [
-    
-  ];
-  taskObject: { [category: string]: Task[] } = {};
+  tasks: Task[] =JSON.parse(localStorage.getItem('tasks')|| '[]');
+  taskObject: { [category: string]: Task[] } = JSON.parse(localStorage.getItem('taskObject') || '{ }');
   searchResults:Task[]=this.tasks;
   taskId=this.tasks.length-1;
   isCategorized=false;
@@ -21,6 +19,10 @@ export class TasklistComponent {
       if(task.id===id){
         task.isDone=!task.isDone;
       }
+      let taskObjectString = JSON.stringify(this.taskObject);
+      localStorage.setItem('taskObject', taskObjectString);
+      let tasksString = JSON.stringify(this.tasks);
+      localStorage.setItem('tasks', tasksString);
     }
   const filterElement = document.getElementById('Filter') as HTMLSelectElement;
   filterElement.value = this.FilterResult;
@@ -36,7 +38,10 @@ DeleteAllTasks(searchInput:HTMLInputElement){
       this.tasks=[];
       this.searchResults=[];
       searchInput.value="";
-    
+      let taskObjectString = JSON.stringify(this.taskObject);
+      localStorage.setItem('taskObject', taskObjectString);
+      let tasksString = JSON.stringify(this.tasks);
+      localStorage.setItem('tasks', tasksString);
   }
 }
 FilterResult:string="All";
@@ -97,10 +102,12 @@ AddTask(taskInputElement:HTMLInputElement,categoryInputElement:HTMLInputElement,
       const filterElement = document.getElementById('Filter') as HTMLSelectElement;
       filterElement.value = this.FilterResult;
       filterElement.dispatchEvent(new Event('change'));
-    console.log("categories" +this.GetCategories());
 
 }
-
+let taskObjectString = JSON.stringify(this.taskObject);
+localStorage.setItem('taskObject', taskObjectString);
+let tasksString = JSON.stringify(this.tasks);
+localStorage.setItem('tasks', tasksString);
 }
 DeleteTask(id:number,SearchInput:HTMLInputElement){
   const deletedTask=this.tasks.find(task=>task.id==id);
@@ -115,7 +122,10 @@ DeleteTask(id:number,SearchInput:HTMLInputElement){
         delete this.taskObject[deletedTask.category];
     }
   }
-
+  let taskObjectString = JSON.stringify(this.taskObject);
+  localStorage.setItem('taskObject', taskObjectString);
+  let tasksString = JSON.stringify(this.tasks);
+  localStorage.setItem('tasks', tasksString);
   }
 GetTaskCount():number{
   return this.tasks.length;
