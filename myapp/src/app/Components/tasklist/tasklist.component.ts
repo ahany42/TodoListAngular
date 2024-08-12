@@ -12,28 +12,31 @@ export class TasklistComponent {
   taskObject: { [category: string]: Task[] } = {};
   searchResults:Task[]=this.tasks;
   taskId=this.tasks.length-1;
+  isCategorized=false;
+  ToggleSwitch(event:Event){
+  this.isCategorized=!this.isCategorized;
+  }
   ToggleTask(id:number){
     for(let task of this.tasks){
       if(task.id===id){
         task.isDone=!task.isDone;
       }
     }
-    
   const filterElement = document.getElementById('Filter') as HTMLSelectElement;
   filterElement.value = this.FilterResult;
   filterElement.dispatchEvent(new Event('change'));
 }
 IdGenrator():number{
-
 return Date.now();
 }
 DeleteAllTasks(searchInput:HTMLInputElement){
   const confirmation=confirm("Are You Sure You Want To Delete All Tasks?");
   if(confirmation){
-    this.tasks=[];
-    this.searchResults=[];
-    searchInput.value="";
-    this.taskObject={};
+      this.taskObject={};
+      this.tasks=[];
+      this.searchResults=[];
+      searchInput.value="";
+    
   }
 }
 FilterResult:string="All";
@@ -46,6 +49,7 @@ SearchResults(inputElement?:HTMLInputElement,event?:Event){
     }
     else{
       this.searchResults=this.tasks.filter(task=>task.details.toLowerCase().includes(inputElement.value.toLocaleLowerCase()));
+    
     }
   }
   else{
@@ -65,7 +69,7 @@ SearchResults(inputElement?:HTMLInputElement,event?:Event){
     else{
       this.searchResults=this.searchResults;
     }
-  
+
 }
 
 
@@ -76,18 +80,25 @@ AddTask(taskInputElement:HTMLInputElement,categoryInputElement:HTMLInputElement,
     alert("Please Fill Task Title Field");
   }
   else{
-    if (!this.taskObject[taskCategory]) {
-      this.taskObject[taskCategory] = [];
-    }
-    this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator(),taskCategory);
-    this.SearchResults(SearchInput);
-    taskInputElement.value='';
-    categoryInputElement.value='';
-    const filterElement = document.getElementById('Filter') as HTMLSelectElement;
-    filterElement.value = this.FilterResult;
-    filterElement.dispatchEvent(new Event('change'));
-    this.taskObject[taskCategory].push(this.tasks[this.tasks.length-1]);
-    console.log(this.taskObject);
+    
+    
+      console.log(this.taskObject);
+      this.tasks[this.tasks.length]=new Task(taskDetails, false,this.IdGenrator(),taskCategory);
+      this.SearchResults(SearchInput);
+      taskInputElement.value='';
+      categoryInputElement.value='';
+      if (!this.taskObject[taskCategory]) {
+        this.taskObject[taskCategory] = [];
+        this.taskObject[taskCategory].push(this.tasks[this.tasks.length-1]);
+      }
+      else{
+        this.taskObject[taskCategory].push(this.tasks[this.tasks.length-1]);
+      }
+      const filterElement = document.getElementById('Filter') as HTMLSelectElement;
+      filterElement.value = this.FilterResult;
+      filterElement.dispatchEvent(new Event('change'));
+    console.log("categories" +this.GetCategories());
+
 }
 
 }
@@ -98,10 +109,10 @@ DeleteTask(id:number,SearchInput:HTMLInputElement){
   const filterElement = document.getElementById('Filter') as HTMLSelectElement;
   filterElement.value = this.FilterResult;
   filterElement.dispatchEvent(new Event('change'));
-  if(deletedTask){
-    this.taskObject[deletedTask.category]=this.taskObject[deletedTask.category].filter(task=>task.id!==deletedTask.id);
-    if (this.taskObject[deletedTask.category].length === 0) {
-      delete this.taskObject[deletedTask.category];
+    if(deletedTask){
+      this.taskObject[deletedTask.category]=this.taskObject[deletedTask.category].filter(task=>task.id!==deletedTask.id);
+      if (this.taskObject[deletedTask.category].length === 0) {
+        delete this.taskObject[deletedTask.category];
     }
   }
 
@@ -118,5 +129,7 @@ for(let task of this.tasks){
 }
 return doneCount;
 }
-
+GetCategories() {
+  return Object.entries(this.taskObject);
+}
 }
