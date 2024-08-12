@@ -39,6 +39,9 @@
 .AddButton{
     margin-top: 30px;
 }
+#SearchInput{
+    width:180px;
+}
 #SearchInput,select{
     border-radius:10px;
 }
@@ -68,7 +71,7 @@
 input{
     padding-left: 10px;
 }
-p,h4{
+p,h5{
     text-align:center;
 }
 label{
